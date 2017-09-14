@@ -1,4 +1,7 @@
-package com.aquaq.pokerface;
+package com.aquaq.pokerface.input;
+
+import com.aquaq.pokerface.PokerFaceException;
+import com.aquaq.pokerface.PokerFaceProperties;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -6,12 +9,18 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-public class FileInputStream {
+public class FileInput implements Input {
 
-    public Stream<String> readInput(){
+    private PokerFaceProperties pokerFaceProperties;
+
+    public FileInput(final PokerFaceProperties pokerFaceProperties){
+        this.pokerFaceProperties = pokerFaceProperties;
+    }
+
+    public Stream<String> fetchInput(){
         Stream<String> input = null;
         try {
-            input = Files.lines(Paths.get(getClass().getResource("/pokerHands.txt").toURI()));
+            input = Files.lines(Paths.get(getClass().getResource(pokerFaceProperties.getInputLocation()).toURI()));
         } catch (final IOException e) {
             final String message = "Error reading in file.";
             System.out.println(message);
