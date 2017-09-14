@@ -1,12 +1,7 @@
 package com.aquaq.pokerface;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class PokerFace {
@@ -16,28 +11,13 @@ public class PokerFace {
     private static final int POSITION_NAME = 0;
     private static final int EXPECTED_CARD_DATA_LENGTH = 2;
 
-    public void readInput(){
-        Stream<String> input = null;
-        try {
-            input = Files.lines(Paths.get(getClass().getResource("/pokerHands.txt").toURI()));
-        } catch (final IOException e) {
-            final String message = "Error reading in file.";
-            System.out.println(message);
-            throw new PokerFaceException(message);
-        } catch (final URISyntaxException e) {
-            final String message = "Invalid URI.";
-            System.out.println(message);
-            throw new PokerFaceException(message);
-        }
-        //input.forEach(System.out::println);
-        final List<String> record = input.collect(Collectors.toList());
-        for(final String hand : record){
-            final String description = determineHand(hand);
-            System.out.println(String.format("Hand: %s, Description: %s.", hand, description));
-        }
+    public static void process(){
+        final FileInputStream fileInputStream = new FileInputStream();
+        final Stream<String> input = fileInputStream.readInput();
+        input.forEach(PokerFace::determineHand);
     }
 
-    private String determineHand(final String cards){
+    private static void determineHand(final String cards){
         final Hand hand = new Hand();
         final List<String> cardList = Arrays.asList(cards.split(DELIMITER));
         for(final String card : cardList){
@@ -47,10 +27,11 @@ public class PokerFace {
             hand.addCard(new Card(suit, name));
         }
 
-        return hand.getHandRank();
+        final String description = hand.getHandRank();
+        System.out.println(String.format("Hand: %s, Description: %s.", cards, description));
     }
 
-    private void validateCard(final String card) {
+    private static void validateCard(final String card) {
         if(card.length() != EXPECTED_CARD_DATA_LENGTH){
             final String message = String.format("card length: %s does not match expected length: %s", card.length(), EXPECTED_CARD_DATA_LENGTH);
             System.out.println(message);
