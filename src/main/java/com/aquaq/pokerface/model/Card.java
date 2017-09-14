@@ -1,7 +1,9 @@
 package com.aquaq.pokerface.model;
 
 import com.aquaq.pokerface.PokerFaceException;
+import lombok.Data;
 
+@Data
 public class Card {
 
     private final Suit suit;
@@ -10,14 +12,6 @@ public class Card {
     public Card(final char suit, final char name){
         this.suit = determineSuit(suit);
         this.name = determineName(name);
-    }
-
-    public Suit getSuit() {
-        return suit;
-    }
-
-    public Name getName() {
-        return name;
     }
 
     private Suit determineSuit(char suit) {

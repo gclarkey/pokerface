@@ -1,10 +1,12 @@
 package com.aquaq.pokerface.model;
 
 import com.aquaq.pokerface.PokerFaceException;
+import lombok.EqualsAndHashCode;
 
 import java.util.HashSet;
 import java.util.Set;
 
+@EqualsAndHashCode
 public class Hand {
 
     private static final int MAX_HAND_SIZE = 5;
