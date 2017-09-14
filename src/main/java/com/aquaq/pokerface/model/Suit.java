@@ -1,4 +1,4 @@
-package com.aquaq.pokerface;
+package com.aquaq.pokerface.model;
 
 public enum Suit {
     CLUBS('C'), DIAMONDS('D'), HEARTS('H'), SPADES('S');

@@ -1,4 +1,6 @@
-package com.aquaq.pokerface;
+package com.aquaq.pokerface.model;
+
+import com.aquaq.pokerface.PokerFaceException;
 
 import java.util.HashSet;
 import java.util.Set;

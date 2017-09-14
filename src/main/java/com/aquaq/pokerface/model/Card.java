@@ -1,4 +1,6 @@
-package com.aquaq.pokerface;
+package com.aquaq.pokerface.model;
+
+import com.aquaq.pokerface.PokerFaceException;
 
 public class Card {
 
@@ -36,6 +38,7 @@ public class Card {
                 return n;
             }
         }
+
         final String message = String.format("Unable to match Name of card to supplied value: %s", name);
         System.out.println(message);
         throw new PokerFaceException(message);

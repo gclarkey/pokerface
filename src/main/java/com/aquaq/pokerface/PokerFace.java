@@ -1,5 +1,8 @@
 package com.aquaq.pokerface;
 
+import com.aquaq.pokerface.model.Card;
+import com.aquaq.pokerface.model.Hand;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
